@@ -9,10 +9,10 @@ Okay fine if you seriously want to start with a Hello World, here it is:
 ----
 print("Hello World")
 ----
-just add it into the code window and hit the power button.
+just add it to the code window and hit the power button.
 
 Everyone else who wants to start with something proper.
-We first have to learn about something very important first.
+We first have to learn about something very important.
 
 == (Network) Components
 Computer Network Components are all things that can be connected
@@ -20,9 +20,9 @@ to the computer component network and be discovered by it.
 
 Every such *component* has two major properties you want to be aware of.
 
-The first is the component id. This is a UUID that identifies a unique component and can not be changed.
+The first is the component id. This is a UUID that identifies a unique component and cannot be changed.
 It should be unique in the universe (but real life won't allow that, for now we can view it as such).
-An analogy would be an IP-Address or better a MAC-Address. +
+An analogy would be an IP-Address or a MAC-Address. +
 The **UUID** is used to reference this specific component in and across networks. +
 Be aware that if you want to write good code, you don't want to reference such a component
 "hard coded" in your program.
@@ -36,7 +36,7 @@ At first sight the nick allows you to give your components a nickname, so you ca
 which component is which when you are presented with a list of network components. +
 On a second look tho, you can use the nick field for much more.
 The nick field is also designed as keyword list where each keyword resembles a group.
-You can f.e. give a component the nick `test north 1`
+You can e.g. give a component the nick `test north 1`
 and your component will be in the nick groups `test`, `north` and `1`.
 You can now use later on a "nick query" to search for all components in the network
 that are part of the `test` and the `north` group using the query `test north` query
@@ -46,12 +46,12 @@ Tho if you query for something like `test meep`
 your component won't be matched because it is not part of the `meep` group as requested. +
 The nick allows for one more thing. Holding data.
 You can exploit the nick property to add data like configuration data to a component.
-But your program will have to figure out how to parse this data it-self.
+But your program will have to figure out how to parse this data itself.
 
 [WARNING]
 ====
 In a component network there can be an infinite amount of network components,
-but large networks are not recommended as they can be slow the game down
+but large networks are not recommended as they can slow the game down
 when in use or shown by a component network outliner. +
 Instead, it is recommended to split component networks using network routers
 into multiple smaller ones and use network messages to communicate between networks.
@@ -64,7 +64,7 @@ For this we use network cables that can usually be attached somewhere on a compo
 These points are also called network connectors, and you already know one,
 the connector on top of the computer case. +
 Not every network component has to have such a connector,
-network cards f.e. are connected to the network via and internal connection inside the computer case.
+network cards f.e. are connected to the network via an internal connection inside the computer case.
 
 You can use the computer network cable from the build menu to build a network cable between two connectors
 just like you can connect power cables.
@@ -89,19 +89,19 @@ You can also connect cables to machines and things that my not appear to be comp
 This is done using the network adapter. This is not a buildable or item.
 Instead, such adapter will be created and attached to a machine or other thing
 when you try to connect a cable to it.
-The Cable hologram won't be visible as long as it has not found a start and end component.
+The cable hologram won't be visible as long as it has not found a start and end component.
 That means you can simply try to create a cable connection from somewhere like a pole or computer, to a machine,
 and if the cable hologram appears, you know it would create an adapter for you.
 
 The adapter is just an attachment to a machine or other thing that allows you
 to connect a network cable to it and interact with the object. +
-Once attached it will stay attached till you disassemble the whole machine/thing.
+Once attached it will stay attached until you disassemble the whole machine/thing.
 
 Any machine that has a power connector, can be connected to the computer network
 and hence is able to have a network adapter attached.
 The adapter and so the cable connection will be at the exact same location as the power connector.
 
-Other buildings like a storage container who doesn't have a power connector
+Other buildings like a storage container which doesn't have a power connector
 have to be manually configured by the mod to support a network adapter.
 When these get connected to the network,
 a little power connector mesh will appear somewhere on the building to represent the connection point.
@@ -134,7 +134,7 @@ will open the network manager's UI with the outlined objects context.
 If the object was a network component or had a network adapter attached,
 then the network manager will open into the component network outliner.
 This outliner is the same as inside the computer. +
-It provides a input field to change the network component's nick, +
+It provides an input field to change the network component's nick, +
 a read-only field containing its UUID, +
 a field showing the name of the connected network and +
 a list of all connected network components (including it-self). +
@@ -159,13 +159,13 @@ And you can also press `ctrl + shift + v` to paste your clipboard into the nick 
 
 The network manager has a third tab, the data-workbench. +
 The data-workbench allows you, as already mentioned, to copy contents
-of one data storage item to another on. +
+of one data storage item to another one. +
 You can place the item you want to write to into the top slot.
 The item you want to copy the data from needs to be placed into the middle slot.
 At the point when you have both these slots filled with compatible items,
 the input item in the top slot will be written with the contents of the item in the middle slot
 and be moved into the bottom output slot. +
 This only works with compatible items.
-You can not copy the data from a EEPROM to a drive or vice versa,
+You can not copy the data from an EEPROM to a drive or vice versa,
 but you can copy the data from one EEPROM to another or
 copy the data from one Drive to another.
