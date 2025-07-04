@@ -12,7 +12,7 @@ What we have done so far:
 We want to write a program that prints the count of items of the storage container
 into the console output. +
 For this we first have to reference the storage container
-and then interact with to storage container.
+and then interact with the storage container.
 
 == Lua APIs
 In the Lua runtime the CPU provides a couple of APIs and libraries that allow you
@@ -40,7 +40,7 @@ which is stored in the `container` variable.
 
 Using the `print` function which got reimplemented by FIN
 you can output the variable to the console.
-It will convert the reference to descriptive string for easy debugging.
+It will convert the reference to a descriptive string for easy debugging.
 
 [source,lua]
 print(container)
@@ -50,15 +50,15 @@ you will get an output like: `123 "test meep" Computer`. +
 For a component with id `123`, no nick and type `Computer`
 you will get an output like: `123 Computer`
 
-The value that the proxy function returns is also referred as
+The value that the proxy function returns is also referred to as
 Object-, Component-, -Instance or -Reference. +
-These are special values created by FIN and not necessary Lua native. +
+These are special values created by FIN and not native to Lua. +
 It's of type "userdata" which behaves similar to tables in Lua. +
 Each object type also has its own meta-table. +
 But that goes more in-depth, we will have a look at those unique things
 slowly as we progress.
 
-If the proxy function can not find a network component with the given id,
+If the proxy function cannot find a network component with the given id,
 it will return `nil`.
 
 The proxy function also allows you to do batch proxies.
@@ -72,7 +72,7 @@ and it will return an array/list of references.
 local arr = component.proxy({"123", "456", "789"})
 print(arr[1], arr[2], arr[3]) -- 123 456 789 in that order
 
-Additionally, the proxy function can take a variable amount of arguments
+Additionally, the proxy function can take a variable number of arguments
 and convert each argument separately.
 It will then return the converted values in the multiple return values
 in the same order as given in the parameter list.
@@ -94,21 +94,21 @@ and it heavily bases upon the system of the unreal engine.
 
 Most (not all) "structures" inside unreal engine are objects.
 Objects represent a "thing" and hold different values, also called attributes or properties,
-and the have functions to interact with the object. +
+and they have functions to interact with the object. +
 Also important to note is that each object has a "Type". You call the objects also "instances of a class".
-A class is nothing else as another object that describes a different object. +
-If you f.e. have a storage container and use the proxy function to get a reference to it.
+A class is nothing more than an object that describes another object. +
+If you e.g. have a storage container and use the proxy function to get a reference to it.
 You reference an instance of type storage container
-("storage container" is the type of the object, and the specific object with the ID you used in the proxy is a instance of it).
+("storage container" is the type of the object, and the specific object with the ID you used in the proxy is an instance of it).
 The class (aka. type) "storage container" now describes what attributes and functions a storage container has.
-A constructor f.e. has a `standby` attribute that describes if the constructor is turned off or not,
+A constructor e.g. has a `standby` attribute that describes if the constructor is turned off or not,
 and it has a function `setRecipe` that allows you to change the recipe the constructor crafts.
 
 Important to note is that it also uses a hierarchy of types to share common traits between types.
-A constructor f.e. shares the standby functionality with many other machines just like power generators
+A constructor e.g. shares the standby functionality with many other machines just like power generators,
 but still adds its own functionality. +
 A constructor is of class/type "constructor" and adds functionality like changing the recipe it produces.
-The "constructor" class/type extends the "factory" class/type which adds f.e. standby functionality.
+The "constructor" class/type extends the "factory" class/type which adds e.g. standby functionality.
 A power generator is of class/type "power_generator" also extends the "factory" class/type
 and instead extends it with a "validFuel" function.
 This ensures you can reference a object, expect it to be of type "factory",
@@ -143,20 +143,20 @@ func(compX, px, py, ...) -- call it on any further objects of that type
 ----
 
 The reference to the object is not stored in the function value as "c closure" like in many other environments.
-Instead, it is stored in the actual object you use, and that is why you have to pass it to the function as you use it.
+Instead, it's stored in the actual object you use, and that is why you have to pass it to the function as you use it.
 ====
 
 Every object bases upon the Object type/class.
 This class introduces a couple of attributes you need from time to time:
 
 * `hash` attribute and `getHash()` function +
-  The attribute is read only and the function returns the same value as the property provides.
+  The attribute is read-only and the function returns the same value as the property provides.
   It returns an integer value that is a hash of the internal reference.
-  You want to use this when you f.e. use a object as table key. +
+  You want to use this when you e.g. use a object as table key. +
   Lua tables work by using the objects own instance, but as already discussed,
   we have a reference to a reference.
   That means when you do two separate proxy calls and get the same object (you used the same UUID),
-  Lua will view them as individual values. And that means it can not be used as table key. +
+  Lua will view them as individual values. And that means it cannot be used as table key. +
   You don't need to use it for comparison operations like `==`, because this functional can be overwritten
   using Lua metatables and FicsIt-Networks does that for you.
 * `internalPath` attribute +
@@ -166,8 +166,8 @@ This class introduces a couple of attributes you need from time to time:
 * `internalName` attribute +
   It is similar to `internalPath` but instead allows to access the internalName attribute of the UE object.
 * `getType()` function +
-  This function allows you to get an object that represents the type (not a individual instance) of an object. +
-  With it, you can f.e. dynamically discover attributes and functions, show their descriptions etc. +
+  This function allows you to get an object that represents the type (not an individual instance) of an object. +
+  With it, you can e.g. dynamically discover attributes and functions, show their descriptions etc. +
   We will cover how to use the reflection system inside Lua in another section.
 
 There is also a special type of Instance called a Class Instance. +
@@ -175,7 +175,7 @@ Class Instances are different from Objects of Type Class. +
 Objects of type class are objects that hold information for a given type,
 while Class Instances are like singletons. +
 We use Class Instances to represent in-game "object types" that hold information.
-f.e. an Item Type (Iron Plate), doesn't have instanced, there are not many "Iron Plate Types",
+e.g. an Item Type (Iron Plate), doesn't have instances, there are not many "Iron Plate Types",
 there is just one type of "Iron Plate".
 Tho, such a type holds information like
 a name, if you can discard the item or not, or how much energy it releases when burned.
@@ -185,12 +185,12 @@ by making them their own type "class instances".
 
 Properties can be used just like fields in a Lua table. +
 Tho many are read-only and Lua will throw an exception accordingly. +
-This behaviour is implemented by overwriting the index and new-index functions in the meta-table.
+This behavior is implemented by overwriting the index and new-index functions in the meta-table.
 
 Referencing a component is a bit special. +
 Such reference will have additionally two more properties you can work with. +
-The additional readonly `id` field allows you to get the UUID of the component. +
-The additional `nick` field allows you to read and write the components nick.
+The additional read-only `id` field allows you to get the UUID of the component. +
+The additional `nick` field allows you to read and write the component's nick.
 This especially useful when you use the nick as means of storing configuration.
 
 == Actually using this Information
@@ -220,7 +220,7 @@ of the storage container, to get the count of items.
 local inventory = container:getInventories()[1]
 
 Now we want to print the item-count to the console.
-We could separate the part were we get the item-count from the inventory and the part where we print to the console,
+We could separate the part where we get the item-count from the inventory and the part where we print to the console,
 but since its not much code in one line we don't do that now.
 
 [source,lua]
