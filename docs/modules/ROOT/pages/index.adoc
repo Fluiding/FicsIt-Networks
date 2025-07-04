@@ -60,7 +60,7 @@ To ask questions, share scripts, or generally learn more about using the mod, ch
 
 == Documentation Structure
 
-This documentation is seperated into six sections:
+This documentation is separated into six sections:
 
 - The xref:BasicConcept.adoc[Basic Concept] section is a surface-level explanation of the mod's structure, e.g. elements of a network and an introduction to the Reflection System.
 - The xref:buildings/index.adoc[Buildings] section lists all constructable buildings you can place using the build gun.
